@@ -155,6 +155,12 @@ class MainActivity : AppCompatActivity() {
         binding.swipeRefresh.setOnRefreshListener {
             if (isOnline()) binding.webView.reload() else loadStartUrl()
         }
+        // Only allow pull-to-refresh when the page is truly scrolled to the top.
+        // Without this, swiping to scroll content up can be misread as a
+        // pull-to-refresh gesture partway down the page.
+        binding.swipeRefresh.setOnChildScrollUpCallback { _, _ ->
+            binding.webView.scrollY > 0
+        }
     }
 
     private fun setupBackHandling() {
