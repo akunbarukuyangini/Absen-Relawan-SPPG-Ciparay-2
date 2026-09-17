@@ -216,24 +216,20 @@ class MainActivity : AppCompatActivity() {
 
     private inner class AppWebViewClient : WebViewClient() {
 
-        override fun         override fun         override fun         override fun         override fun         override fun shouldOverrideUrlLoading(             view: WebView,             request: WebResourceRequest         ): Boolean {             val url = request.url             val scheme = url.scheme ?: return false              // Only non-web links (tel:, mailto:, whatsapp:, intent:) leave the app.             // Every http/https link — any domain, including SSO/login redirects —             // stays inside this WebView so the user never sees a browser chooser.             return if (scheme != "http" && scheme != "https") {                 openExternally(url)             } else {                 false             }         }(             view: WebView,             request: WebResourceRequest         ): Boolean {             val url = request.url             val scheme = url.scheme ?: return false              // Only non-web links (tel:, mailto:, whatsapp:, intent:) leave the app.             // Every http/https link — any domain, including SSO/login redirects —             // stays inside this WebView so the user never sees a browser chooser.             return if (scheme != "http" && scheme != "https") {                 openExternally(url)             } else {                 false             }         }(             view: WebView,             request: WebResourceRequest         ): Boolean {             val url = request.url             val scheme = url.scheme ?: return false              // Only non-web links (tel:, mailto:, whatsapp:, intent:) leave the app.             // Every http/https link — any domain, including SSO/login redirects —             // stays inside this WebView so the user never sees a browser chooser.             return if (scheme != "http" && scheme != "https") {                 openExternally(url)             } else {                 false             }         }(             view: WebView,             request: WebResourceRequest         ): Boolean {             val url = request.url             val scheme = url.scheme ?: return false              // Only non-web links (tel:, mailto:, whatsapp:, intent:) leave the app.             // Every http/https link — any domain, including SSO/login redirects —             // stays inside this WebView so the user never sees a browser chooser.             return if (scheme != "http" && scheme != "https") {                 openExternally(url)             } else {                 false             }         }(             view: WebView,             request: WebResourceRequest         ): Boolean {             val url = request.url             val scheme = url.scheme ?: return false              // Only non-web links (tel:, mailto:, whatsapp:, intent:) leave the app.             // Every http/https link — any domain, including SSO/login redirects —             // stays inside this WebView so the user never sees a browser chooser.             return if (scheme != "http" && scheme != "https") {                 openExternally(url)             } else {                 false             }         }(
+        override fun shouldOverrideUrlLoading(
             view: WebView,
             request: WebResourceRequest
         ): Boolean {
             val url = request.url
             val scheme = url.scheme ?: return false
 
-            // Non-web links (tel:, mailto:, whatsapp:, intent:) go to external apps.
-            if (scheme != "http" && scheme != "https") {
-                return openExternally(url)
-            }
-
-            // Keep the app inside the portal host; send everything else to the browser.
-            val host = url.host ?: return false
-            return if (host == allowedHost || host.endsWith(".$allowedHost")) {
-                false
-            } else {
+            // Only non-web links (tel:, mailto:, whatsapp:, intent:) leave the app.
+            // Every http/https link — any domain, including SSO/login redirects —
+            // stays inside this WebView so the user never sees a browser chooser.
+            return if (scheme != "http" && scheme != "https") {
                 openExternally(url)
+            } else {
+                false
             }
         }
 
