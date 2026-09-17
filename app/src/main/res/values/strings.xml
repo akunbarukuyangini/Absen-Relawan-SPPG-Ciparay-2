@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Absen Relawan SPPG Ciparay 2</string>
+    <string name="start_url">https://sipgn.bgn.go.id/public</string>
+    <string name="no_connection">Tidak ada koneksi internet</string>
+    <string name="retry">Coba lagi</string>
+    <string name="exit_confirm">Tekan sekali lagi untuk keluar</string>
+    <string name="choose_file">Pilih foto</string>
+    <string name="perm_camera_needed">Izin kamera diperlukan untuk mengambil foto absen</string>
+    <string name="perm_location_needed">Izin lokasi diperlukan untuk absen</string>
+</resources>
